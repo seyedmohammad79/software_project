@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django_recaptcha',
     'rest_framework',
     'drf_spectacular',
-
+    'order_module',
 ]
 
 MIDDLEWARE = [
