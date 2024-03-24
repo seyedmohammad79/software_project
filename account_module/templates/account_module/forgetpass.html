@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+فراموشی رمز عبور
+{% endblock %}
+{% block header_refernce %}
+<link rel="stylesheet" href="{% static 'css/fotgerpass.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="bg-img">
+        <div class="content">
+            <header>فراموشی رمز عبور</header>
+            <form method="post" action="{% url 'forget_password' %}">
+                {% csrf_token %}
+                <div class="field">
+                    <span class="fa fa-envelope"></span>
+                    {{ forget_pass_form.email }}
+                </div>
+                {% if forget_pass_form.errors %}
+                <div id="errors" class="alert-danger">
+                {{ forget_pass_form.email.errors }}
+                </div>
+                {% endif %}
+                <div class="field">
+                    <button type="submit">ارسال لینک بازیابی</button>
+{#                    <input type="submit" value="ارسال لینک بازیابی">#}
+                </div>
+            </form>
+            <div class="login">قبلاً حساب کاربری داشتید؟ <a href="{% url 'login_page' %}">وارد شوید</a></div>
+            <div class="signup">حساب کاربری ندارید؟ <a href="{% url 'register_page' %}">ثبت‌نام کنید</a></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if status %}
+    <script >
+        Swal.fire({
+            title: '{{ title }}',
+            text: "{{ text }}",
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: '{{confirmButtonText}}'
+        }).then((result) => {
+        });
+    </script>
+{% endif %}
+{% endblock %}
+

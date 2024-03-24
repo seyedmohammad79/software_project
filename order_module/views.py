@@ -5,10 +5,8 @@ import requests
 import json
 
 # ? sandbox merchant
-if settings.SANDBOX:
-    sandbox = 'sandbox'
-else:
-    sandbox = 'www'
+
+sandbox = 'www'
 
 MERCHANT = 'test'
 ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
