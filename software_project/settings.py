@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account_module',
     'product_module',
+    'contact_module',
+    'order_module',
+    'home_module',
+    'site_module',
+    'user_panel_module',
+    'admin_panel_module',
     'django_recaptcha',
     'rest_framework',
     'drf_spectacular',
@@ -130,7 +136,7 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'statics'
+    BASE_DIR / 'static'
 ]
 
 # Default primary key field type

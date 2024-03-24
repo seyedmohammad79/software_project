@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+احراز هویت ایمیل
+{% endblock %}
+
+{% block header_refernce %}
+<link rel="stylesheet" href="{% static 'css/IdentityEmail.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="bg-img">
+        <div class="content">
+            <header>احراز هویت ایمیل</header>
+            <p>کد ارسال شده به ایمیل خود را وارد کنید:</p>
+            <form method="post" action="{% url 'authenticate_page' email_active_url=email_active_url %}">
+                {% csrf_token %}
+                <div class="field" >
+                    <span class="fa fa-key"></span>
+                    {{ authenticate_form.email_active_code }}
+                </div>
+                <div class="field">
+                    <button type="submit">تأیید</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

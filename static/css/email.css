@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.bg-img{
+  background: url('https://img.freepik.com/premium-vector/work-office-desk-top-view-with-lot-different-stationery-elements-seamless-vector-wallpaper-business-job-theme-image-with-diversity-objects-illustrations-pic_570429-1727.jpg');
+  height: 20vh;
+  background-size:auto;
+  background-position: center;
+}
+
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+}
+
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.04);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+  border-radius: 10px; /* Added border-radius */
+}
+
+.content header{
+  color: white;
+  font-size: 33px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+}
+
+.field{
+  position: relative;
+  margin-top: 5px;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+  border-radius: 5px; /* Added border-radius */
+}

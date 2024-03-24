@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    صفحه ورود
+{% endblock %}
+{% block header_refernce %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="bg-img">
+      <div class="content">
+        <header>فرم ورود</header>
+        <form method="post" action="{% url 'login_page' %}">
+            {% csrf_token %}
+          <div class="field">
+            <span class="fa fa-user"></span>
+            {{ login_form.email }}
+          </div>
+          <div class="field space">
+            <span class="fa fa-lock"  ></span>
+            {{ login_form.password }}
+              <div class="show">
+               <span class="fa fa-eye" onclick="showpass(this)"></span>
+              </div>
+          </div>
+          <div class="pass">
+            <a href="{% url 'forget_password' %}">رمز عبور را فراموش کرده‌اید؟</a>
+          </div>
+            {% if login_form.errors %}
+                <div id="errors" class="alert-danger">
+                {{ login_form.email.errors }}
+                {{ login_form.password.errors }}
+                </div>
+            {% endif %}
+          <div class="field">
+            <button type="submit">ورود</button>
+          </div>
+        </form>
+        <div class="login">یا وارد شوید با</div>
+        <div class="links">
+          <div class="facebook">
+            <i class="fa fa-facebook"><span>فیسبوک</span></i>
+          </div>
+          <div class="instagram">
+            <i class="fa fa-instagram"><span>اینستاگرام</span></i>
+          </div>
+        </div>
+        <div class="signup">حساب کاربری ندارید؟
+          <a href="{% url 'register_page' %}">ثبت نام</a>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block footer_refernce %}
+    <script>
+    function showpass(element) {
+        const pass_field = document.querySelector(".pass-key");
+        if (pass_field.type === "password") {
+            pass_field.type = "text";
+            element.classList.remove("fa-eye");
+            element.classList.add("fa-eye-slash");
+        } else {
+            pass_field.type = "password";
+            element.classList.remove("fa-eye-slash");
+            element.classList.add("fa-eye");
+        }
+    }
+
+    </script>
+{% endblock %}
+
