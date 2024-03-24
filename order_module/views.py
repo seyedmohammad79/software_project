@@ -4,8 +4,6 @@ from django.conf import settings
 import requests
 import json
 
-# Create your views here.
-
 # ? sandbox merchant
 if settings.SANDBOX:
     sandbox = 'sandbox'

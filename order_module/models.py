@@ -8,6 +8,10 @@ class Order(models.Model):
     is_paid = models.BooleanField(verbose_name='پرداخت شده / نشده')
     payment_date = models.DateField(null=True, blank=True, verbose_name='تاریخ پرداخت')
 
+    class Meta:
+        verbose_name = 'سفارش'
+        verbose_name_plural = 'سفارش‌ها'
+
     def __str__(self):
         return str(self.user)
 
@@ -15,15 +19,15 @@ class Order(models.Model):
         total_amount = 0
 
         if self.is_paid:
-            for detail_order in self.orderdetail_set:
+            for detail_order in self.orderitem_set:
                 total_amount += detail_order.final_price
         else:
-            for detail_order in self.orderdetail_set:
+            for detail_order in self.orderitem_set:
                 total_amount += detail_order.count * detail_order.product.price
 
 
-class OrderDetail(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='سفارش')
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='محصول')
-    count = models.IntegerField()
-    final_price = models.IntegerField()
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='سفارش')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
+    count = models.IntegerField(verbose_name='تعداد محصول')
+    final_price = models.IntegerField(verbose_name='قیمت نهایی')

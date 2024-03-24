@@ -2,9 +2,6 @@ from django.db import models
 from django.utils.text import slugify
 
 
-# Create your models here.
-
-
 class ProductBrand(models.Model):
     name = models.CharField(max_length=200,db_index=True ,verbose_name='نام برند')
     url_title = models.CharField(max_length=200, db_index=True, verbose_name='عنوان در url')
@@ -13,6 +10,10 @@ class ProductBrand(models.Model):
     class Meta:
         verbose_name = 'برند'
         verbose_name_plural = 'برندها'
+
+    @staticmethod
+    def get_all_brandes():
+        return ProductBrand.objects.all()
 
     def __str__(self):
         return self.name
@@ -26,6 +27,10 @@ class ProductCategory(models.Model):
     class Meta:
         verbose_name ='دسته'
         verbose_name_plural = 'دسته ها'
+
+    @staticmethod
+    def get_all_categories():
+        return ProductCategory.objects.all()
 
     def __str__(self):
         return self.name
@@ -44,12 +49,27 @@ class Product(models.Model):
     is_delete = models.BooleanField(verbose_name='حذف شده / نشده')
 
     class Meta:
-        verbose_name='محصول'
-        verbose_name_plural='محصولات'
+        verbose_name = 'محصول'
+        verbose_name_plural = 'محصولات'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)
+
+    @staticmethod
+    def get_products_by_id(ids):
+        return Product.objects.filter(id__in=ids)
+
+    @staticmethod
+    def get_all_products():
+        return Product.objects.all()
+
+    @staticmethod
+    def get_all_products_by_category_id(category_id):
+        if category_id:
+            return Product.objects.filter(category=category_id)
+        else:
+            return Product.get_all_products()
 
     def __str__(self):
         return self.title
