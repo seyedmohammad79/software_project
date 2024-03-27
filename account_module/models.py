@@ -28,6 +28,25 @@ class User(AbstractUser):
 
         return False
 
+    def get_user_info(self):
+        return {'firstname': self.first_name,
+                'lastname': self.last_name,
+                'username': self.username,
+                'password': self.password,
+                'image': self.image,
+                'email': self.email,
+                'address': self.address}
+
+    def update_user_info(self, first_name, last_name, username, password, image, email, address):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.username = username
+        self.password = password
+        self.image = image
+        self.email = email
+        self.address = address
+        self.save()
+
     def __str__(self):
         if self.first_name != '' and self.last_name != '':
             return self.get_full_name()

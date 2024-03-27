@@ -36,6 +36,7 @@ class Order(models.Model):
         else:
             for detail_order in self.orderdetail_set.all():
                 total_amount += detail_order.count * detail_order.product.price
+
         return total_amount
 
     class Meta:
@@ -44,7 +45,7 @@ class Order(models.Model):
 
 
 class OrderDetail(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='سفارش')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='سفارش')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
     final_price = models.IntegerField(null=True, blank=True, verbose_name='قیمت نهایی تکی محصول')
     count = models.IntegerField(verbose_name='تعداد')
